@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lib.videoplayer.ui.VideoActivity">
+
+
+    <TextView
+        android:id="@+id/no_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/_no_content_text"
+        android:textSize="24dp"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@mipmap/loading_icon" />
+
+    <VideoView
+        android:id="@+id/movie_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:background="@color/transparent_color"
+        android:src="@drawable/ic_pause_black_24dp"
+        android:layout_toRightOf="@+id/loading"
+        android:id="@+id/pauseMovie"/>
+
+    <VideoView
+        android:id="@+id/ad_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/news_feed_layout"
+        layout="@layout/new_feed_layout"
+        android:visibility="gone" />
+
+
+    <FrameLayout
+        android:id="@+id/top_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"></FrameLayout>
+
+    <TextView
+        android:id="@+id/breaking_video_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/holo_red_dark"
+        android:gravity="center"
+        android:text="@string/breaking_video_uppercase"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/company_logo"
+        android:layout_width="@dimen/company_gif_width"
+        android:layout_height="@dimen/company_gif_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/company_gif_right_margin"
+        android:src="@drawable/tv_logo" />
+
+    <FrameLayout
+        android:id="@+id/breaking_news_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_container"
+        android:layout_toRightOf="@+id/bottom_container"
+        android:layout_toEndOf="@+id/bottom_container"></FrameLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_banner"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_alignParentTop="true"
+    android:background="@color/transparent_color">
+
+    <!--distance layout : start-->
+    <LinearLayout
+        android:id="@+id/distance_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@string/total_distance_text"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="20sp" />-->
+
+        <TextView
+            android:id="@+id/total_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="--km"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <!--distance layout : end-->
+
+
+    <!--journey layout : start-->
+    <LinearLayout
+        android:id="@+id/journey_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/distance_layout"
+        android:orientation="vertical">
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@string/journey_hours_text"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="20sp" />-->
+
+
+        <TextView
+            android:id="@+id/journey_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="-- hr"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+    <!--journey layout : end-->
+    <ImageButton
+        android:id="@+id/ext_movie_list"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:focusable="true"
+        android:visibility="gone"
+        android:src="@drawable/extdrive_bg"
+        android:focusableInTouchMode="true"
+        android:layout_toLeftOf="@+id/movie_list"/>
+
+    <ImageButton
+        android:id="@+id/movie_list"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/route"
+        android:src="@drawable/movie_bg"
+        android:background="@null"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+
+    <ImageView
+        android:id="@+id/bioscope_img"
+        android:layout_width="@dimen/movie_list_icon_width"
+        android:layout_height="@dimen/movie_list_icon_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:src="@mipmap/final_logo" />
+
+
+    <ImageButton
+        android:id="@+id/route"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_toLeftOf="@+id/bioscope_img"
+        android:src="@drawable/route_bg"
+        android:background="@null"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+</RelativeLayout>

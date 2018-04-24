@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="landing_sequence">
+        <item>video_song</item>
+        <item>sports</item>
+        <item>comedy_show</item>
+        <item>trailer</item>
+        <item>serial</item>
+        <item>devotional</item>
+    </string-array>
+
+    <string-array name="movie_init_sequence">
+        <item>intro</item>
+        <item>company</item>
+        <item>safety</item>
+    </string-array>
+
+    <string-array name="movie_sequence">
+        <item>intro</item>
+    </string-array>
+
+    <string-array name="external_sequence">
+        <item>company_disc</item>
+    </string-array>
+</resources>

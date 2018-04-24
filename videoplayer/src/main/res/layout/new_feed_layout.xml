@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_banner"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/transparent_color">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="150dp"
+        android:src="@drawable/digvijaya_news_icon"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/ticker_logo"/>
+
+    <TextView
+        android:id="@+id/news_feed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:freezesText="true"
+        android:layout_toStartOf="@+id/ticker_logo" />
+</RelativeLayout>

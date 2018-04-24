@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_banner"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bottom_banner_height"
+    android:layout_alignParentTop="true"
+    android:background="@color/transparent_color">
+
+    <!--distance layout : start-->
+    <LinearLayout
+        android:id="@+id/distance_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@string/total_distance_text"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="20sp" />-->
+
+        <TextView
+            android:id="@+id/total_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="--km"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <!--distance layout : end-->
+
+
+    <!--journey layout : start-->
+    <LinearLayout
+        android:id="@+id/journey_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/distance_layout"
+        android:orientation="vertical">
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@string/journey_hours_text"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="20sp" />-->
+
+        <TextView
+            android:id="@+id/journey_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="-- hr"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+    <!--journey layout : end-->
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_marginRight="150dp"
+        android:src="@drawable/home_bg"
+        android:background="@null"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+
+    <ImageButton
+        android:id="@+id/route"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_toLeftOf="@+id/home"
+        android:src="@drawable/route_bg"
+        android:background="@null"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <requestFocus />
+    </ImageButton>
+</RelativeLayout>

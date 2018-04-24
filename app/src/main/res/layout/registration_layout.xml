@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <ImageView
+
+        android:layout_width="@dimen/company_image_width"
+        android:layout_height="@dimen/company_image_height"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/company_image_top_margin"
+        android:src="@mipmap/final_logo_navajhalaka" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/bus_registraion_text_top_margin"
+        android:gravity="center"
+        android:text="@string/enter_reg_number_text"
+        android:textColor="@color/violet_color"
+        android:textSize="@dimen/bus_registraion_text_size" />
+
+    <EditText
+        android:id="@+id/registration_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/bus_registraion_edittext_top_margin"
+        android:gravity="center"
+        android:hint="@string/enter_reg_number_hint_text"
+        android:inputType="textCapCharacters"
+        android:textColorHint="@color/light_violet_color"
+        android:textSize="@dimen/bus_registraion_edittext_size" />
+</LinearLayout>
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/bus_registraion_button_top_margin"
+        android:background="@drawable/button_bg"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:text="@string/submit_text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/bus_registraion_button_textsize" />
+
+
+</RelativeLayout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/llhindi"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/violet_color"
+                    android:id="@+id/tvhindi"
+                    android:paddingLeft="10dp"
+                    android:text="HINDI"/>
+
+                <com.lib.videoplayer.util.MyGridView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:numColumns="5"
+                    android:id="@+id/hindi_movie_list">
+
+                </com.lib.videoplayer.util.MyGridView>
+                <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/movie_list"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp" />-->
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/llenglish"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/violet_color"
+                    android:id="@+id/tvenglish"
+                    android:paddingLeft="10dp"
+                    android:text="ENGLISH"/>
+
+                <com.lib.videoplayer.util.MyGridView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:numColumns="5"
+                    android:id="@+id/english_movie_list">
+
+                </com.lib.videoplayer.util.MyGridView>
+                <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/movie_list"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp" />-->
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/llkanada"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/tvkannada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:paddingLeft="10dp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/violet_color"
+                    android:text="KANNADA"/>
+
+                <com.lib.videoplayer.util.MyGridView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="5"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/kannada_movie_list">
+
+                </com.lib.videoplayer.util.MyGridView>
+                <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/movie_list"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp" />-->
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/lltamil"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/violet_color"
+                    android:id="@+id/tvtamil"
+                    android:paddingLeft="10dp"
+                    android:text="TAMIL"/>
+
+                <com.lib.videoplayer.util.MyGridView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="5"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/tamil_movie_list">
+                </com.lib.videoplayer.util.MyGridView>
+                <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/movie_list"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp" />-->
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="240dp" />
+
+
+            <TextView
+                android:id="@+id/empty_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:text="@string/no_movie_available"
+                android:textSize="40sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

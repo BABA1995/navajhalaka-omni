@@ -1,0 +1,4 @@
+path=MovieBioscope\documents\navajhalaka-release-key.jks
+keystore password=navajhalaka@123
+key-alias=navajhalaka-release-key
+key password=navajhalaka@123

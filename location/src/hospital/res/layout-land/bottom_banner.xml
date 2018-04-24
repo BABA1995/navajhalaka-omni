@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/transparent_color">
+
+    <!--source layout start-->
+    <LinearLayout
+        android:id="@+id/source_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/source_layout_left_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/start_text"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/start_textview_size" />
+
+        <TextView
+            android:id="@+id/source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="--"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/source_textview_size" />
+
+        <TextView
+            android:id="@+id/source_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="--km"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/source_distance_textview_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="5dp"
+            android:text="@string/_current_time_text"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/current_time_textview_size" />
+
+        <TextView
+            android:id="@+id/current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="--"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/current_time_value_size" />
+    </LinearLayout>
+    <!--source layout end-->
+
+    <LinearLayout
+        android:id="@+id/internet_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/internet_layout_left_margin"
+        android:layout_toRightOf="@id/source_layout"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/offline_icon_width"
+            android:layout_height="@dimen/offline_icon_height"
+            android:layout_gravity="center"
+            android:src="@mipmap/no_internet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Offline"
+            android:textSize="@dimen/offline_textview_size"
+            android:textColor="@android:color/white" />
+
+        <ProgressBar
+            android:id="@+id/pb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--destination layout start-->
+    <LinearLayout
+        android:id="@+id/destination_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/destination_layout_right_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/destination_text"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/destination_textview_size"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Destination"
+            android:gravity="bottom"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/destination_value_size" />
+
+        <TextView
+            android:id="@+id/destination_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="--km"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/destination_distance_value_size" />
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="end"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:text="@string/time_left_text"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="@dimen/timeleft_textview_size" />-->
+
+        <TextView
+            android:id="@+id/time_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="--hr"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/timeleft_value_size" />
+    </LinearLayout>
+    <!--destination layout end-->
+
+    <ImageView
+        android:id="@+id/downloading_icon"
+        android:layout_width="@dimen/offline_icon_width"
+        android:layout_height="@dimen/offline_icon_height"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/destination_layout"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/downloading_icon"
+        android:visibility="invisible"/>
+
+
+
+    <!--current location layout : start-->
+    <LinearLayout
+        android:id="@+id/current_location_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@string/_current_location_text"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="@dimen/current_location_textview_size" />-->
+        <TextView
+            android:id="@+id/current_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="--"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/current_location_area_value_size" />
+
+        <TextView
+            android:id="@+id/current_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="--"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/current_location_value_size" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="--"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/current_location_city_value_size" />
+
+    </LinearLayout>
+    <!--current location layout : end-->
+</RelativeLayout>
