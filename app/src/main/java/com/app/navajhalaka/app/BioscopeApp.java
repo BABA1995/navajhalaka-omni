@@ -32,6 +32,7 @@ import java.nio.channels.FileChannel;
 //import static com.lib.videoplayer.util.AdsSlotConfigUtil.DEFAULT_ADS_PER_SLOT_COUNT;
 //import static com.lib.videoplayer.util.AdsSlotConfigUtil.DEFAULT_SLOTS_PER_HOUR_COUNT;
 
+// comment after initial commit
 public class BioscopeApp extends Application {
 
     private static final String TAG = BioscopeApp.class.getSimpleName();
