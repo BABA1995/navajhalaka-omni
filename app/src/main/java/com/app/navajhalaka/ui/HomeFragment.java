@@ -42,6 +42,7 @@ import static com.app.navajhalaka.database.BusProvider.CONTENT_URI_BUS_DETAIL_TA
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+// to commit
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = HomeFragment.class.getSimpleName();
     private static final long WAITING_TIME = 30 * 1000;//30 secs
