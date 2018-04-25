@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private BroadcastReceiver mReceiver;
     String comp;
 
-    private TopBannerFragment topBannerFragment=new TopBannerFragment(); // ssy comment
+    private TopBannerFragment topBannerFragment=new TopBannerFragment();//chethan
 
     private Handler mSlideHandler;
     public static final int DELAY = 10 * 1000;// 5 seconds
