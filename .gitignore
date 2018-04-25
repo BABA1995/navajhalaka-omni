@@ -28,6 +28,7 @@ local.properties
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
 .idea/gradle.xml
+.idea/runConfigurations.xml
 
 *.iml
 
