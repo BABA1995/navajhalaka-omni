@@ -24,6 +24,7 @@ android {
       travel{
             dimension "industry"
             applicationId "com.app.navajhalaka"
+            //cannot give different app id because the google-services.json is using this
 
      }
         hospital{
