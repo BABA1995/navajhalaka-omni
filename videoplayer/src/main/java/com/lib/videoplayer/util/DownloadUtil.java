@@ -27,9 +27,8 @@ public class DownloadUtil {
     private static final String TAG = DownloadUtil.class.getSimpleName();
     private static final boolean DEBUG = true;
 
-    /**
+    /*
      * Method to start download
-     *
      * @param context
      * @param downloadUri
      * @param name
@@ -69,7 +68,7 @@ public class DownloadUtil {
         return downloadId;
     }
 
-    /**
+    /*
      * Method to check the loaded file belongs to our application or not
      * @param context
      * @param downloadId
@@ -97,9 +96,8 @@ public class DownloadUtil {
         return lValue;
     }
 
-    /**
+    /*
      * Method to get the downloded file's path
-     *
      * @param context
      * @param downloadId
      * @return
@@ -130,9 +128,8 @@ public class DownloadUtil {
         return data;
     }
 
-    /**
+    /*
      * method to create uri for different type of video file
-     *
      * @param videoType
      * @return
      */
