@@ -3,14 +3,17 @@ package com.lib.videoplayer.util;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import com.lib.utility.util.ExternalStorage;
 
 import com.lib.utility.util.CustomIntent;
 import com.lib.utility.util.Logger;
@@ -24,6 +27,7 @@ import com.lib.videoplayer.object.SequenceCloudData;
 import com.lib.videoplayer.object.SlotData;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -85,6 +89,7 @@ public class VideoTaskHandler extends Handler {
         return sInstance;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
@@ -226,26 +231,37 @@ public class VideoTaskHandler extends Handler {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void downloadContent(PushData pushData) {
         for (Asset asset : pushData.getAssets()) {
+            Data data = copyAssetToData(asset);
+           String name = data.getName();
+           String status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADING;
+           String path = ExternalStorage.getPath(sContext)+File.separator+DownloadUtil.getDestinationDir(asset.getType());
+           boolean fileExists = hasDownloadedFile(path,name);
+           if(fileExists){
+           status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADED;
+           }
 
             //check is there any entry with the same assert id then ignore it .may be its a duplicate message
             if (!VideoData.isAssetExist(sContext, asset.getAssetID())) {
                 if (null != asset.getType() && asset.getType().equalsIgnoreCase("ticker")) {
                     VideoData.deleteAllTicker();
                 }
-                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName());
-                DownloadData downloadData = DownloadUtil.getDownloadedFileData(sContext, lDownloadId);
-                Data data = copyAssetToData(asset);
+                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName(), status);
+                DownloadData downloadData = DownloadUtil.getDownloadedFileData(sContext, lDownloadId);data.setDownloadingId(String.valueOf(lDownloadId));
                 data.setMessage(pushData.getContent());
                 data.setDownloadingId(String.valueOf(lDownloadId));
-                data.setDownloadStatus(VideoProvider.DOWNLOAD_STATUS.DOWNLOADING);
+                data.setDownloadStatus(status);
                 data.setPath(DownloadUtil.getDestinationDir(asset.getType()) + "/" + asset.getName());
                 data.setTransactionId(pushData.getTransactionID());
                 data.setCloudTime(pushData.getCloudTime());
                 data.setReceivedTime(pushData.getReceivedTime());
                 VideoData.insertOrUpdateVideoData(sContext, data);
             } else {
+                boolean movieOrVideo = path.contains("/landing_video/")||path.contains("/movie/");
+                if (!movieOrVideo){
+                    status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADING;
                 Logger.info(TAG, "HANDLE_VIDEO_DATA :: DOWNLOAD:: already exist in the table::  asset id " + asset.getAssetID());
                 try {
                     dFilePath = VideoData.getAssetPath(asset.getAssetID());
@@ -259,18 +275,19 @@ public class VideoTaskHandler extends Handler {
                 if (null != asset.getType() && asset.getType().equalsIgnoreCase("ticker")) {
                     VideoData.deleteAllTicker();
                 }
-                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName());
+                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName(), status);
                 //       DownloadData downloadData = DownloadUtil.getDownloadedFileData(sContext, lDownloadId);
-                Data data = copyAssetToData(asset);
+
                 data.setMessage(pushData.getContent());
                 data.setDownloadingId(String.valueOf(lDownloadId));
-                data.setDownloadStatus(VideoProvider.DOWNLOAD_STATUS.DOWNLOADING);
-                data.setPath(dFilePath);
+                data.setDownloadStatus(status);
+                data.setPath(path);
                 data.setTransactionId(pushData.getTransactionID());
                 data.setCloudTime(pushData.getCloudTime());
                 data.setReceivedTime(pushData.getReceivedTime());
                 VideoData.insertOrUpdateVideoData(sContext, data);
             }
+        }
         }
     }
 
@@ -285,4 +302,11 @@ public class VideoTaskHandler extends Handler {
         return data;
     }
 
-}
+    private boolean hasDownloadedFile(String path, String name) {
+            if (Environment.isExternalStorageEmulated()) {
+                File dir = new File(path+name);
+                return dir.exists();
+            }
+            return false;
+        }
+    }

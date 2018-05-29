@@ -6,6 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -31,7 +35,8 @@ public class DownloadUtil {
      * @param name
      * @return
      */
-    public static long beginDownload(Context context, String downloadUri, String dir, String name) {
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static long beginDownload(Context context, String downloadUri, String dir, String name, String status) {
         long downloadId = -1;
         if (NetworkUtil.isInternetAvailable(context)) {
             File ext = ExternalStorage.getPath(context);
@@ -46,7 +51,19 @@ public class DownloadUtil {
             request.setDestinationUri(path);
             //Enqueue a new download and same the referenceId
             downloadId = downloadManager.enqueue(request);
-            LocalBroadcastManager.getInstance(VideoApplication.getVideoContext()).sendBroadcast(new Intent(CustomIntent.ACTION_DOWNLOAD_STARTED));
+            if (status.equals(VideoProvider.DOWNLOAD_STATUS.DOWNLOADED)){
+                downloadManager.remove(downloadId);
+                Message lMessage = new Message();
+                lMessage.what = VideoTaskHandler.TASK.HANDLE_DOWNLOADED_VIDEO;
+                Bundle lBundle = new Bundle();
+                lBundle.putLong(VideoTaskHandler.KEY.DOWNLOAD_ID, downloadId);
+                lMessage.setData(lBundle);
+                VideoTaskHandler.getInstance(context).sendMessage(lMessage);
+            }
+            else {
+                LocalBroadcastManager.getInstance(VideoApplication.getVideoContext()).sendBroadcast(new Intent(CustomIntent.ACTION_DOWNLOAD_STARTED));
+
+            }
         }
         Log.d(TAG, "beginDownload :: downloadId " + downloadId);
         return downloadId;
