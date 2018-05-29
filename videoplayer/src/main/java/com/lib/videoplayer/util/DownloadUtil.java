@@ -71,7 +71,6 @@ public class DownloadUtil {
 
     /**
      * Method to check the loaded file belongs to our application or not
-     *
      * @param context
      * @param downloadId
      * @return
