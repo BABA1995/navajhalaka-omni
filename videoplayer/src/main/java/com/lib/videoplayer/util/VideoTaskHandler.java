@@ -235,25 +235,16 @@ public class VideoTaskHandler extends Handler {
     private void downloadContent(PushData pushData) {
         for (Asset asset : pushData.getAssets()) {
             Data data = copyAssetToData(asset);
-           String name = data.getName();
-           String status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADING;
-           String path = ExternalStorage.getPath(sContext)+File.separator+DownloadUtil.getDestinationDir(asset.getType());
-           boolean fileExists = hasDownloadedFile(path,name);
-           if(fileExists){
-           status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADED;
-           }
-
+           String path = DownloadUtil.getDestinationDir(asset.getType());
             //check is there any entry with the same assert id then ignore it .may be its a duplicate message
             if (!VideoData.isAssetExist(sContext, asset.getAssetID())) {
                 if (null != asset.getType() && asset.getType().equalsIgnoreCase("ticker")) {
                     VideoData.deleteAllTicker();
                 }
-                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName(), status);
+                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName(),data);
                 DownloadData downloadData = DownloadUtil.getDownloadedFileData(sContext, lDownloadId);data.setDownloadingId(String.valueOf(lDownloadId));
                 data.setMessage(pushData.getContent());
                 data.setDownloadingId(String.valueOf(lDownloadId));
-                data.setDownloadStatus(status);
-                data.setPath(DownloadUtil.getDestinationDir(asset.getType()) + "/" + asset.getName());
                 data.setTransactionId(pushData.getTransactionID());
                 data.setCloudTime(pushData.getCloudTime());
                 data.setReceivedTime(pushData.getReceivedTime());
@@ -261,7 +252,6 @@ public class VideoTaskHandler extends Handler {
             } else {
                 boolean movieOrVideo = path.contains("/landing_video/")||path.contains("/movie/");
                 if (!movieOrVideo){
-                    status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADING;
                 Logger.info(TAG, "HANDLE_VIDEO_DATA :: DOWNLOAD:: already exist in the table::  asset id " + asset.getAssetID());
                 try {
                     dFilePath = VideoData.getAssetPath(asset.getAssetID());
@@ -275,13 +265,11 @@ public class VideoTaskHandler extends Handler {
                 if (null != asset.getType() && asset.getType().equalsIgnoreCase("ticker")) {
                     VideoData.deleteAllTicker();
                 }
-                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName(), status);
+                long lDownloadId = DownloadUtil.beginDownload(sContext, asset.getUrl(), DownloadUtil.getDestinationDir(asset.getType()), asset.getName(),data);
                 //       DownloadData downloadData = DownloadUtil.getDownloadedFileData(sContext, lDownloadId);
 
                 data.setMessage(pushData.getContent());
                 data.setDownloadingId(String.valueOf(lDownloadId));
-                data.setDownloadStatus(status);
-                data.setPath(path);
                 data.setTransactionId(pushData.getTransactionID());
                 data.setCloudTime(pushData.getCloudTime());
                 data.setReceivedTime(pushData.getReceivedTime());
@@ -302,11 +290,4 @@ public class VideoTaskHandler extends Handler {
         return data;
     }
 
-    private boolean hasDownloadedFile(String path, String name) {
-            if (Environment.isExternalStorageEmulated()) {
-                File dir = new File(path+name);
-                return dir.exists();
-            }
-            return false;
-        }
     }

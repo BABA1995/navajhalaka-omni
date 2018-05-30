@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.LocalBroadcastManager;
@@ -19,6 +20,7 @@ import com.lib.utility.util.ExternalStorage;
 import com.lib.utility.util.Logger;
 import com.lib.videoplayer.VideoApplication;
 import com.lib.videoplayer.database.VideoProvider;
+import com.lib.videoplayer.object.Data;
 import com.lib.videoplayer.object.DownloadData;
 
 import java.io.File;
@@ -35,9 +37,10 @@ public class DownloadUtil {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static long beginDownload(Context context, String downloadUri, String dir, String name, String status) {
+    public static long beginDownload(Context context, String downloadUri, String dir, String name,Data data) {
         long downloadId = -1;
         if (NetworkUtil.isInternetAvailable(context)) {
+            String status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADING;
             File ext = ExternalStorage.getPath(context);
             File root = new File(ext + File.separator);
             DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -48,6 +51,14 @@ public class DownloadUtil {
             Uri path = Uri.withAppendedPath(Uri.fromFile(root), dir + name);
             Log.d(TAG, "--<SD CARD :: TEST > beginDownload :: path " + path);
             request.setDestinationUri(path);
+            data.setPath(""+path);
+            String absolutePath = data.getPath().substring(7);
+            data.setPath(absolutePath);
+            boolean fileExists = hasDownloadedFile(absolutePath);
+            if (fileExists){
+                status = VideoProvider.DOWNLOAD_STATUS.DOWNLOADED;
+            }
+            data.setDownloadStatus(status);
             //Enqueue a new download and same the referenceId
             downloadId = downloadManager.enqueue(request);
             if (status.equals(VideoProvider.DOWNLOAD_STATUS.DOWNLOADED)){
@@ -66,6 +77,14 @@ public class DownloadUtil {
         }
         Log.d(TAG, "beginDownload :: downloadId " + downloadId);
         return downloadId;
+    }
+
+    private static boolean hasDownloadedFile(String absolutePath) {
+        if (Environment.isExternalStorageEmulated()) {
+            File dir = new File(absolutePath);
+            return dir.exists();
+        }
+        return false;
     }
 
     /*
