@@ -163,7 +163,7 @@ public class BioscopeApp extends Application {
                 String currentDBPath = "/data/data/com.app.navajhalaka/databases/bioscope.db";
                 String backupDBPath = "backupname.db";
                 File currentDB = new File(currentDBPath);
-                File backupDB = new File(sd, backupDBPath);
+                File backupDB = new File(sd, backupDBPath)  ;
 
                 if (currentDB.exists()) {
                     FileChannel src = new FileInputStream(currentDB).getChannel();

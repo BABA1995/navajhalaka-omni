@@ -23,6 +23,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -56,6 +57,7 @@ public class VideoActivity extends AppCompatActivity implements View.OnTouchList
     private Context mContext;
     private VideoView mMovieView;
     private VideoView mOtherView;
+    private MediaController mediaController;
     private TextView mNoContentView;
     private Handler mTaskHandler;
     private BroadcastReceiver mReceiver;
@@ -127,7 +129,13 @@ public class VideoActivity extends AppCompatActivity implements View.OnTouchList
         hideNotificationBar();
         initView();
         initState();
-
+        if (mediaController == null) {
+            mediaController = new MediaController(VideoActivity.this);
+            mediaController.setAnchorView(mMovieView);
+            mediaController.setAnchorView(mOtherView);
+            mMovieView.setMediaController(mediaController);
+            mOtherView.setMediaController(mediaController);
+        }
         Bundle bundle = getIntent().getExtras();
         try {
             path = bundle.getString("VIDEO_PATH");
@@ -318,6 +326,7 @@ public class VideoActivity extends AppCompatActivity implements View.OnTouchList
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
