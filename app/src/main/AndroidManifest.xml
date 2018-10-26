@@ -54,7 +54,6 @@
         <provider
             android:name=".database.BusProvider"
             android:authorities="com.app.navajhalaka.contentprovider.database.BusProvider" />
-
         <provider
             android:name=".database.AnalyticProvider"
             android:authorities="com.app.navajhalaka.contentprovider.database.AnalyticProvider" />
